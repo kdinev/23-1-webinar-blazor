@@ -1,0 +1,65 @@
+@page "/"
+@inject NavigationManager NavigationManager
+
+<div class="row-layout overview-container">
+    <div class="column-layout group">
+        <h5 class="h5">
+            Overview
+        </h5>
+        <IgbList class="list" overview-scope>
+            <IgbListItem @onclick="@(e => Navigate("combo"))">
+                <IgbAvatar slot="start" Shape="AvatarShape.Circle">
+                    <span class="material-icons">
+                        list
+                    </span>
+                </IgbAvatar>
+                <div slot="title">Combo Component</div>
+                <div slot="subtitle">Web Components</div>
+            </IgbListItem>
+            <IgbListItem @onclick="@(e => Navigate("stepper"))">
+                <IgbAvatar slot="start" Shape="AvatarShape.Circle">
+                    <span class="material-icons">
+                        tab_unselected
+                    </span>
+                </IgbAvatar>
+                <div slot="title">Stepper Component</div>
+                <div slot="subtitle">Web Components</div>
+            </IgbListItem>
+            <IgbListItem @onclick="@(e => Navigate("pivot_grid"))">
+                <IgbAvatar slot="start" Shape="AvatarShape.Circle">
+                    <span class="material-icons">
+                        grid_on
+                    </span>
+                </IgbAvatar>
+                <div slot="title">Pivot Grid Component</div>
+                <div slot="subtitle">Web Components</div>
+            </IgbListItem>
+            <IgbListItem @onclick="@(e => Navigate("export_summaries"))">
+                <IgbAvatar slot="start" Shape="AvatarShape.Circle">
+                    <span class="material-icons">
+                        grid_on
+                    </span>
+                </IgbAvatar>
+                <div slot="title">Grid Excel Export with Summaries</div>
+                <div slot="subtitle">Angular + Web Components</div>
+            </IgbListItem>
+            <IgbListItem @onclick="@(e => Navigate("animations"))">
+                <IgbAvatar slot="start" Shape="AvatarShape.Circle">
+                    <span class="material-icons">
+                        transfer_within_a_station
+                    </span>
+                </IgbAvatar>
+                <div slot="title">Animations - Dialog, Snackbar, Toast</div>
+                <div slot="subtitle">Web Components</div>
+            </IgbListItem>
+        </IgbList>
+    </div>
+</div>
+
+@code {
+
+    public void Navigate(string path)
+    {
+        NavigationManager.NavigateTo(path);
+    }
+}

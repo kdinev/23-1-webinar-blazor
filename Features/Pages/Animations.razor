@@ -1,0 +1,30 @@
+@page "/animations"
+
+<div class="column-layout animations-container">
+    <IgbDialog CloseOnOutsideClick="true" KeepOpenOnEscape="false" @ref="_dialog">
+        <h5 slot="title">
+            Confirmation
+        </h5>
+        <p>Do you want to end this session?</p>
+        <div slot="footer">
+            <IgbButton Variant="ButtonVariant.Flat" Size="SizableComponentSize.Large" @onclick="@(e => _dialog!.ToggleAsync())">NO</IgbButton>
+            <IgbButton Variant="ButtonVariant.Flat" Size="SizableComponentSize.Large" @onclick="@(e => _dialog!.ToggleAsync())">YES</IgbButton>
+        </div>
+    </IgbDialog>
+    <IgbSnackbar ActionText="Dismiss" Action="@(e => _snackbar!.ToggleAsync())" @ref="_snackbar" class="snackbar" animations-scope>
+        We're running out of time!
+    </IgbSnackbar>
+    <IgbButton Size="SizableComponentSize.Large" @onclick="@(e => _snackbar!.ToggleAsync())" class="button" animations-scope>
+        How are we doing?
+        <IgbRipple></IgbRipple>
+    </IgbButton>
+    <IgbButton Size="SizableComponentSize.Large" @onclick="@(e => _dialog!.ToggleAsync())" class="button" animations-scope>
+        End Session
+        <IgbRipple></IgbRipple>
+    </IgbButton>
+</div>
+
+@code {
+    private IgbDialog? _dialog;
+    private IgbSnackbar? _snackbar;
+}

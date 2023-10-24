@@ -1,0 +1,106 @@
+@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+
+<div class="column-layout release-features-list-container">
+    <IgbNavbar class="navbar" release_features_list-scope>
+        <IgbIconButton slot="start" Variant="IconButtonVariant.Flat" @onclick="@(e => _navDrawer!.ToggleAsync())">
+            <span class="material-icons">
+                menu
+            </span>
+            <IgbRipple></IgbRipple>
+        </IgbIconButton>
+        <div class="row-layout group">
+            <h6 class="h6">
+                23.1 Release Features
+            </h6>
+        </div>
+        <IgbIconButton slot="end" Variant="IconButtonVariant.Flat">
+            <span class="material-icons">
+                search
+            </span>
+            <IgbRipple></IgbRipple>
+        </IgbIconButton>
+        <IgbIconButton slot="end" Variant="IconButtonVariant.Flat">
+            <span class="material-icons">
+                favorite
+            </span>
+            <IgbRipple></IgbRipple>
+        </IgbIconButton>
+        <IgbIconButton slot="end" Variant="IconButtonVariant.Flat">
+            <span class="material-icons">
+                more_vert
+            </span>
+            <IgbRipple></IgbRipple>
+        </IgbIconButton>
+    </IgbNavbar>
+    <div class="row-layout group_1">
+        <IgbNavDrawer Open="true" Position="NavDrawerPosition.Relative" @ref="_navDrawer" class="nav-drawer" release_features_list-scope>
+            <IgbNavDrawerItem @onclick="@(e => Navigate(""))">
+                <span slot="icon">
+                    <span class="material-icons icon">
+                        book
+                    </span>
+                    <IgbRipple></IgbRipple>
+                </span>
+                <div slot="content">Overview</div>
+            </IgbNavDrawerItem>
+            <IgbNavDrawerItem @onclick="@(e => Navigate("combo"))">
+                <span slot="icon">
+                    <span class="material-icons icon">
+                        list
+                    </span>
+                    <IgbRipple></IgbRipple>
+                </span>
+                <div slot="content">Combo</div>
+            </IgbNavDrawerItem>
+            <IgbNavDrawerItem @onclick="@(e => Navigate("stepper"))">
+                <span slot="icon">
+                    <span class="material-icons icon">
+                        tab_unselected
+                    </span>
+                    <IgbRipple></IgbRipple>
+                </span>
+                <div slot="content">Stepper</div>
+            </IgbNavDrawerItem>
+            <IgbNavDrawerItem @onclick="@(e => Navigate("pivot_grid"))">
+                <span slot="icon">
+                    <span class="material-icons icon">
+                        grid_on
+                    </span>
+                    <IgbRipple></IgbRipple>
+                </span>
+                <div slot="content">Pivot Grid</div>
+            </IgbNavDrawerItem>
+            <IgbNavDrawerItem @onclick="@(e => Navigate("export_summaries"))">
+                <span slot="icon">
+                    <span class="material-icons icon">
+                        grid_on
+                    </span>
+                    <IgbRipple></IgbRipple>
+                </span>
+                <div slot="content">Excel Export with Summaries</div>
+            </IgbNavDrawerItem>
+            <IgbNavDrawerItem @onclick="@(e => Navigate("animations"))">
+                <span slot="icon">
+                    <span class="material-icons icon">
+                        transfer_within_a_station
+                    </span>
+                    <IgbRipple></IgbRipple>
+                </span>
+                <div slot="content">Animations</div>
+            </IgbNavDrawerItem>
+        </IgbNavDrawer>
+        <div class="view-container">
+            @Body
+        </div>
+    </div>
+</div>
+
+@code {
+    private IgbNavDrawer? _navDrawer;
+
+    public void Navigate(string path)
+    {
+        NavigationManager.NavigateTo(path);
+    }
+}

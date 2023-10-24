@@ -1,0 +1,59 @@
+.row-layout {
+    display: flex;
+}
+.combo-container {
+    justify-content: center;
+    align-items: stretch;
+    align-content: flex-start;
+    height: 100%;
+}
+.column-layout {
+    display: flex;
+    flex-direction: column;
+}
+.group {
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    position: relative;
+    padding: 24px;
+    width: 420px;
+    min-width: 50px;
+    min-height: 50px;
+}
+.group_1 {
+    justify-content: flex-end;
+    align-items: center;
+    align-content: flex-start;
+    position: relative;
+    margin: 12px 0 0;
+    width: 100%;
+    min-width: 50px;
+    min-height: 50px;
+}
+.h3 {
+    height: max-content;
+    min-width: min-content;
+}
+.icon {
+    --size: 24px;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+.input {
+    margin: 24px 0 12px;
+    width: 100%;
+    height: max-content;
+    min-width: min-content;
+}
+.combo {
+    margin: 12px 0;
+    width: 100%;
+    height: max-content;
+    min-width: min-content;
+}
+.button {
+    height: max-content;
+    flex-shrink: 0;
+}

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IgniteUI.Blazor" Version="23.1.37" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Shared/MainLayout.razor.css" CssScope="release_features_list-scope" />
+    <None Update="Pages/Overview.razor.css" CssScope="overview-scope" />
+    <None Update="Pages/Combo.razor.css" CssScope="combo-scope" />
+    <None Update="Pages/Stepper.razor.css" CssScope="stepper-scope" />
+    <None Update="Pages/Pivot_Grid.razor.css" CssScope="pivot_grid-scope" />
+    <None Update="Pages/Export_Summaries.razor.css" CssScope="export_summaries-scope" />
+    <None Update="Pages/Animations.razor.css" CssScope="animations-scope" />
+  </ItemGroup>
+
+</Project>

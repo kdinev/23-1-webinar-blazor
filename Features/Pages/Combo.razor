@@ -1,0 +1,52 @@
+@page "/combo"
+@using Northwind
+@using Models.Northwind
+@inject INorthwindService northwindService
+
+<div class="row-layout combo-container">
+    <div class="column-layout group">
+        <h3 class="h3">
+            Sign-up Form
+        </h3>
+        <IgbInput DisplayType="InputType.Email" Label="Email address" Required="true" Outlined="true" class="input" combo-scope>
+            <span slot="prefix">
+                <span class="material-icons icon">
+                    email
+                </span>
+            </span>
+        </IgbInput>
+        <IgbCombo Outlined="true" Data="northwindSuppliers" Label="Company" ValueKey="SupplierID" DisplayKey="CompanyName" autoFocusSearch="true" DisableFiltering="true" class="combo" combo-scope>
+            <span slot="prefix">
+                <span class="material-icons icon">
+                    pin_drop
+                </span>
+            </span>
+        </IgbCombo>
+        <IgbCombo Outlined="true" Data="northwindEmployees" Label="Position" ValueKey="EmployeeID" DisplayKey="Title" autoFocusSearch="true" DisableFiltering="true" class="combo" combo-scope>
+            <span slot="prefix">
+                <span class="material-icons icon">
+                    person
+                </span>
+            </span>
+        </IgbCombo>
+        <div class="row-layout group_1">
+            <IgbButton Size="SizableComponentSize.Large" class="button" combo-scope>
+                Submit
+                <IgbRipple></IgbRipple>
+            </IgbButton>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<SuppliersType> northwindSuppliers = new();
+    private List<EmployeesType> northwindEmployees = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        northwindSuppliers = await northwindService.GetSuppliers();
+        northwindEmployees = await northwindService.GetEmployees();
+
+        await base.OnInitializedAsync();
+    }
+}

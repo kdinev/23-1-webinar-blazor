@@ -1,0 +1,18 @@
+.column-layout {
+    display: flex;
+    flex-direction: column;
+}
+.animations-container {
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+    height: 100%;
+}
+.snackbar {
+    height: max-content;
+    min-width: min-content;
+}
+.button {
+    margin: 24px;
+    height: max-content;
+}

@@ -1,0 +1,104 @@
+@page "/pivot_grid"
+@using Financial
+@using Models.Financial
+@inject IFinancialService financialService
+
+<div class="row-layout pivot-grid-container">
+    <div class="row-layout group">
+        <IgbPivotGrid Data="financialSales" PivotConfiguration="Config" SuperCompactMode="true" DefaultExpandState="true" @ref="_pivotGrid" class="ig-typography pivot-grid" pivot_grid-scope></IgbPivotGrid>
+        <IgbPivotDataSelector @ref="_pivotDataSelector"></IgbPivotDataSelector>
+    </div>
+</div>
+
+@code {
+    private IgbPivotConfiguration? _config;
+    private List<SalesType> financialSales = new();
+    private IgbPivotGrid? _pivotGrid;
+    private IgbPivotDataSelector? _pivotDataSelector;
+
+    private IgbPivotConfiguration? Config
+    {
+        get
+        {
+            if (_config == null)
+            {
+                _config = new IgbPivotConfiguration();
+                _config.Columns.Add(new IgbPivotDimension()
+                {
+                    MemberName = "Country",
+                    Enabled = true
+                });
+                _config.Columns.Add(new IgbPivotDimension()
+                {
+                    MemberName = "Product",
+                    Enabled = true
+                });
+                _config.Rows.Add(new IgbPivotDateDimension
+                {
+                    BaseDimension = new IgbPivotDimension
+                    {
+                        MemberName = "Date",
+                        Enabled = true
+                    },
+                    Options = new IgbPivotDateDimensionOptions
+                    {
+                        Years = true,
+                        Months = false,
+                        Quarters = true
+                    }
+                });
+                _config.Values.Add(new IgbPivotValue()
+                {
+                    Member = "Sales",
+                    DataType = GridColumnDataType.Currency,
+                    Enabled = false,
+                    Aggregate = new IgbPivotAggregator()
+                    {
+                        Key = "Sum Of Sales",
+                        AggregatorName = PivotAggregationType.SUM,
+                        Label = "Sum"
+                    }
+                });
+                _config.Values.Add(new IgbPivotValue()
+                {
+                    Member = "Profit",
+                    DataType = GridColumnDataType.Currency,
+                    Enabled = true,
+                    Aggregate = new IgbPivotAggregator()
+                    {
+                        Key = "Sum Of Profit",
+                        AggregatorName = PivotAggregationType.SUM,
+                        Label = "Sum"
+                    }
+                });
+                _config.Filters.Add(new IgbPivotDimension()
+                {
+                    MemberName = "Month",
+                    Enabled = false
+                });
+            }
+
+            return _config;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool isFirstRender)
+    {
+        if (isFirstRender)
+        {
+            if (_pivotDataSelector != null && _pivotGrid != null)
+            {
+                _pivotDataSelector.Grid = _pivotGrid;
+            }
+        }
+
+        await base.OnAfterRenderAsync(isFirstRender);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        financialSales = await financialService.GetSales();
+
+        await base.OnInitializedAsync();
+    }
+}
